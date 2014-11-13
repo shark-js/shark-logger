@@ -1,8 +1,7 @@
 'use strict';
 
 const Logger = require('../lib/logger');
-const chai      = require('chai');
-const expect    = chai.expect;
+const expect = require('chai').expect;
 
 function TestRawStream() {}
 TestRawStream.prototype.write = function (data) {
@@ -13,7 +12,7 @@ TestRawStream.prototype.write = function (data) {
 
 describe('Initial test',function(){
 	before(function() {
-		this.logger = Logger.createLogger({
+		this.logger = Logger({
 			name: 'TestLogger',
 			streams: [
 				{
@@ -33,5 +32,9 @@ describe('Initial test',function(){
 				expect(data.msg).equal('all done');
 			}
 		}, 'all done');
+	});
+
+	it('should output time raw delta as number', function() {
+		expect(Logger.time().start().finish().rawDelta()).to.be.a('number');
 	});
 });

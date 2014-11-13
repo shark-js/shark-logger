@@ -2,7 +2,7 @@
   "name": "shark-logger",
   "version": "0.0.1",
   "description": "shark-logger ============",
-  "main": "index.js",
+  "main": "lib/logger.js",
   "scripts": {
     "test": "node_modules/.bin/mocha --harmony ./test"
   },
