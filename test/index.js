@@ -34,7 +34,7 @@ describe('Initial test',function(){
 		}, 'all done');
 	});
 
-	it('should output time raw delta as number', function() {
-		expect(Logger.time().start().finish().rawDelta()).to.be.a('number');
+	it('should output time delta as number', function() {
+		expect(Logger.time().start().finish().delta()).to.be.a('number');
 	});
 });
