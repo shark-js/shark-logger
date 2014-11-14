@@ -12,19 +12,31 @@ TestRawStream.prototype.write = function (data) {
 
 describe('Initial test',function(){
 	before(function() {
-		this.logger = Logger({
+		this.loggerTrace = Logger({
 			name: 'TestLogger',
 			streams: [
 				{
 					stream: new TestRawStream(),
 					type: 'raw'
 				}
-			]
+			],
+			level: Logger.TRACE
+		});
+
+		this.loggerInfo = Logger({
+			name: 'TestLogger',
+			streams: [
+				{
+					stream: new TestRawStream(),
+					type: 'raw'
+				}
+			],
+			level: Logger.INFO
 		});
 	});
 
 	it('should output valid params',function(){
-		this.logger.info({
+		this.loggerTrace.info({
 			opType: Logger.OP_TYPE.SUCCESS,
 			afterLog: function(data) {
 				expect(data.name).equal('TestLogger');
@@ -34,7 +46,15 @@ describe('Initial test',function(){
 		}, 'all done');
 	});
 
-	it('should output time delta as number', function() {
-		expect(Logger.time().start().finish().delta()).to.be.a('number');
+	it('should output loggerTrace time delta as undefined', function() {
+		var time = this.loggerTrace.time().start();
+
+		expect(time.delta()).to.be.a('undefined');
+	});
+
+	it('should output loggerInfo time delta as number', function() {
+		var time = this.loggerInfo.time().start();
+
+		expect(time.delta()).to.be.a('number');
 	});
 });
