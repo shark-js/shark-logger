@@ -40,4 +40,11 @@ describe('Initial test',function(){
 
 		expect(time.delta()).to.be.a('number');
 	});
+
+	if (process.platform !== 'win32') {
+		it('should output tick symbol', function() {
+				expect(this.logger.SYMBOLS.tick).equal('✔');
+		});
+	}
+
 });
