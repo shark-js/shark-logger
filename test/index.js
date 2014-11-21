@@ -20,7 +20,8 @@ describe('Initial test',function(){
 					type: 'raw'
 				}
 			],
-			level: Logger.TRACE
+			level: Logger.TRACE,
+			deepLevel: 2
 		});
 	});
 
@@ -47,4 +48,7 @@ describe('Initial test',function(){
 		});
 	}
 
+	it('should output valid deepLevel', function() {
+		expect(this.logger.getDeepLevel()).equal(2);
+	});
 });
