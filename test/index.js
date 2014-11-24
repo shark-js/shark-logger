@@ -25,15 +25,30 @@ describe('Initial test',function(){
 		});
 	});
 
-	it('should output valid params',function(){
+	it('should output valid success params',function(){
 		this.logger.info({
 			opType: Logger.OP_TYPE.SUCCESS,
 			afterLog: function(data) {
 				expect(data.name).equal('TestLogger');
 				expect(data.opType).equal(Logger.OP_TYPE.SUCCESS);
 				expect(data.msg).equal('all done');
-			}
+			},
+			size: {before: 10234230, after: 324234},
+			duration: 100
 		}, 'all done');
+	});
+
+	it('should output valid fail params',function(){
+		this.logger.info({
+			opType: Logger.OP_TYPE.FINISHED_ERROR,
+			afterLog: function(data) {
+				expect(data.name).equal('TestLogger');
+				expect(data.opType).equal(Logger.OP_TYPE.FINISHED_ERROR);
+				expect(data.msg).equal('error');
+			},
+			size: {before: 10234230, after: 324234},
+			duration: 100
+		}, 'error');
 	});
 
 	it('should output logger time delta as number', function() {
@@ -44,11 +59,13 @@ describe('Initial test',function(){
 
 	if (process.platform !== 'win32') {
 		it('should output tick symbol', function() {
-				expect(this.logger.SYMBOLS.tick).equal('✔');
+			expect(this.logger.SYMBOLS.tick).equal('✔');
 		});
 	}
 
 	it('should output valid deepLevel', function() {
 		expect(this.logger.getDeepLevel()).equal(2);
 	});
+
+
 });
