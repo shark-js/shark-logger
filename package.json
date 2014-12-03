@@ -1,6 +1,6 @@
 {
   "name": "shark-logger",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "shark-logger ============",
   "main": "lib/logger.js",
   "scripts": {
